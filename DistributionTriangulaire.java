@@ -24,8 +24,10 @@ public class DistributionTriangulaire {
 	 * @param b est la limite supérieure de la distribution
 	 */
 	public DistributionTriangulaire(int a, int c, int b) {
+	this.a =a;
+	this.b = b;
+	this.c = c;
 	
-		// ÉCRIVEZ VOTRE CODE ICI !
 
 	}
 
@@ -34,9 +36,17 @@ public class DistributionTriangulaire {
 	 * @return la densité de probabilité au point x
 	 */
 	public Rationnel pdf(int x) {
-
-		// ÉCRIVEZ VOTRE CODE ICI !
-
+		int proba ;
+		if (this.c<x){
+			proba = (2*(this.b-x))/((this.b-this.a)*(this.b-this.c));
+		
+		}else if ( this.c>x){
+			proba = (2*(this.a-x))/((this.b-this.a)*(this.c-this.a));
+		}
+		else{
+			proba =0;
+		}
+		// Rational prob_rational = p
 		return null; // Supprimez cette instruction lorsque l’implémentation est complète.
 	}
 
