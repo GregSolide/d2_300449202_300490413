@@ -1,6 +1,5 @@
 import java.io.File;
 import java.util.Scanner;
-
 /**
  * @auteur Mehrdad Sabetzadeh, Université d'Ottawa
  */
@@ -38,8 +37,14 @@ public class Stationnement {
 	 */
 	public Stationnement(String nomFichier) throws Exception {
 
-		// ÉCRIVEZ VOTRE CODE ICI !
-		
+		if (nomFichier == null) {
+			System.out.println("Le nom du fichier ne peut pas être nul.");
+			return;
+		}
+		calculerDimensionsStationnement(nomFichier);
+		conceptionStationnement = new TypeVoiture[nombreRangees][nombrePlacesParRangee];
+		occupation =  new Emplacement[nombreRangees][nombrePlacesParRangee];
+		remplirConceptionDepuisFichier(nomFichier);
 	}
 
 	public int getNombreRangees() {
@@ -60,7 +65,12 @@ public class Stationnement {
 	 */
 	public void stationner(int i, int j, Voiture v, int horodatage) {
 
-		// ÉCRIVEZ VOTRE CODE ICI !		
+	if ((i<nombreRangees && j< nombrePlacesParRangee)&&peutStationnerA(i, j, v) && occupation[i][j]==null) {
+			occupation[i][j].setVoiture(v);
+			occupation[i][j].setHorodatage(horodatage);
+		}else{
+			System.out.println("La voiture "+Utilitaire.getLibelleParTypeVoiture(v.getType())+"("+v.getNumeroPlaque()+") ne peut pas être garée à "+"("+i+","+j+")"+"");
+		}
 
 	}
 
@@ -75,8 +85,20 @@ public class Stationnement {
 	public Emplacement retirer(int i, int j) {
 
 		// ÉCRIVEZ VOTRE CODE ICI !
+		if ((i<0 || i>=nombreRangees) || (j<0 || j>=nombrePlacesParRangee)) {
+			 return null;
+		 }
+		 if (occupation[i][j]==null) {
+			 return null;
 		
-		return null; // Supprimez cette instruction lorsque l’implémentation est complète.
+		 // SUPPRIMEZ CETTE INSTRUCTION APRÈS AVOIR IMPLÉMENTÉ CETTE MÉTHODE
+
+		
+		}
+		 Emplacement e = occupation[i][j];
+		 occupation[i][j]=null;
+		 return e;// Supprimez cette instruction lorsque l’implémentation est complète.
+	 // Supprimez cette instruction lorsque l’implémentation est complète.
 
 	}
 
@@ -88,10 +110,7 @@ public class Stationnement {
 	 * @return l’instance d’emplacement à la position (i, j)
 	 */
 	public Emplacement getEmplacementA(int i, int j) {
-
-		// ÉCRIVEZ VOTRE CODE ICI !
-		
-		return null; // Supprimez cette instruction lorsque l’implémentation est complète.
+	 return occupation[i][j];
 	}
 
 	/**
@@ -105,10 +124,32 @@ public class Stationnement {
 	 * @return true si la voiture v peut stationner à (i, j), false sinon
 	 */
 	public boolean peutStationnerA(int i, int j, Voiture v) {
-
-		// ÉCRIVEZ VOTRE CODE ICI !
-		
-		return false; // Supprimez cette instruction lorsque l’implémentation est complète.
+			
+		switch (Utilitaire.getLibelleParTypeVoiture(v.getType())) {
+			case "P":
+				if (conceptionStationnement[i][j]!=TypeVoiture.NA  ){
+				return true;
+			}
+			case "R":
+				if (conceptionStationnement[i][j]==TypeVoiture.REGULIERE || conceptionStationnement[i][j]==TypeVoiture.GRANDE ) {
+					return true;
+				}
+				break;
+			case "G":
+				if (conceptionStationnement[i][j]==TypeVoiture.GRANDE) {
+					return true;
+				}
+				break;
+			case "E":
+				
+				if (conceptionStationnement[i][j]!=TypeVoiture.NA){
+				return true;
+			}
+				
+			default:
+				return false;
+		}
+		return false;
 	}
 
 	/**
@@ -126,11 +167,18 @@ public class Stationnement {
 	 */
 	public boolean tenterStationnement(Voiture v, int horodatage) {
 
-		// ÉCRIVEZ VOTRE CODE ICI !
-		
-		return false; // Supprimez cette instruction lorsque l’implémentation est complète.
-
+		for (int i =0 ; i<nombreRangees;i++) {
+			for (int j =0 ; j<nombrePlacesParRangee;j++) {
+				if (peutStationnerA(i, j, v)== true){
+					stationner(i, j, v, horodatage);
+					return true;
+				}
+			}
+		}
+	// Supprimez cette instruction lorsque l’implémentation est complète.
+		return false ;
 	}
+	
 
 	/**
 	 * @return la capacité totale du stationnement en excluant les emplacements qui
@@ -138,10 +186,15 @@ public class Stationnement {
 	 *         (c.-à-d. les emplacements associés à TypeVoiture.NA)
 	 */
 	public int getCapaciteTotale() {
-
-		// ÉCRIVEZ VOTRE CODE ICI !
+		int compteur = 0 ;
+		for (int i =0 ; i<nombreRangees;i++) {
+			for (int j =0 ; j<nombrePlacesParRangee;j++) {
+				if (conceptionStationnement[i][j] == TypeVoiture.NA) {
+					compteur++;
+					
+				}}}
 		
-		return -1; // Supprimez cette instruction lorsque l’implémentation est complète.
+		return (nombrePlacesParRangee*nombreRangees)-compteur; // Supprimez cette instruction lorsque l’implémentation est complète.
 	
 	}
 
@@ -149,22 +202,81 @@ public class Stationnement {
 	 * @return l’occupation totale du stationnement
 	 */
 	public int getOccupationTotale() {
-
 		// ÉCRIVEZ VOTRE CODE ICI !
+		int counteur = 0 ;
+		for (int i=0 ;i<nombreRangees;i++) {
+			for (int j=0 ; j<nombrePlacesParRangee;j++) {
+				if (occupation[i][j]!=null) {
+					counteur++;
+				}
+			}
+		}
 		
-		return -1; // Supprimez cette instruction lorsque l’implémentation est complète.
+		return counteur;
+		
 
-	}
+		
+	}// Supprimez cette instruction lorsque l’implémentation est complète.
+
+	
 
 	private void calculerDimensionsStationnement(String nomFichier) throws Exception {
 
-		// ÉCRIVEZ VOTRE CODE ICI !
+		Scanner scanner = new Scanner(new File(nomFichier));
+		int i=0;
+		
+		while (scanner.hasNext()) {
+			String str = scanner.nextLine();
+			// ÉCRIVEZ VOTRE CODE ICI !
 
+			str=str.trim();
+			
+			
+			if (i==0) {
+				nombrePlacesParRangee = str.split(SEPARATEUR).length;
+			}
+			if (str.equals("")){
+				break;
+			}
+			
+			
+			
+			
+			i++;
+			}
+		nombreRangees=i;
+		
+
+		scanner.close();
+		
 	}
+
+	
 
 	private void remplirConceptionDepuisFichier(String nomFichier) throws Exception {
 
-		// ÉCRIVEZ VOTRE CODE ICI !
+		Scanner scanner = new Scanner(new File(nomFichier));
+
+		// VOUS DEVEZ PEUT-ÊTRE DÉFINIR DES VARIABLES LOCALES ICI !
+		int i =0 ;
+
+		// boucle while pour lire la conception du stationnement
+		while (scanner.hasNext()) {
+			String str = scanner.nextLine();
+			// ÉCRIVEZ VOTRE CODE ICI !
+			str=str.trim();
+			if (!(str.equals(""))) {
+				for (int j =0 ; j<nombrePlacesParRangee;j++) {
+				String[] parts = str.split(SEPARATEUR);
+				conceptionStationnement[i][j] = Utilitaire.getTypeVoitureParLibelle(parts[j].trim());				
+			}
+			
+			
+			}
+			i++;
+			
+			
+		}
 
 	}
 

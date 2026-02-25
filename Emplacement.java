@@ -7,37 +7,29 @@ public class Emplacement {
 	private int horodatage;
 
 	public Voiture getVoiture() {
-
-		// ÉCRIVEZ VOTRE CODE ICI !
-
-		return null; // Supprimez cette instruction lorsque l’implémentation est complète.
-
+		return this.voiture; 
 	}
 
 	public void setVoiture(Voiture voiture) {
 	
-		// ÉCRIVEZ VOTRE CODE ICI !
+		this.voiture = voiture;
 	
 	}
 
 	public int getHorodatage() {
-	
-		// ÉCRIVEZ VOTRE CODE ICI !
-		
-		return -1; // Supprimez cette instruction lorsque l’implémentation est complète.
+		return horodatage;
 
 	}
 
 	public void setHorodatage(int horodatage) {
 
-		// ÉCRIVEZ VOTRE CODE ICI !
+		this.horodatage = horodatage;
 		
 	}
 
 	public Emplacement(Voiture voiture, int horodatage) {
-
-		// ÉCRIVEZ VOTRE CODE ICI !
-		
+	this.voiture = voiture;
+	this.horodatage= horodatage;
 	}
 
 	/**
