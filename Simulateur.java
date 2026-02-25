@@ -72,14 +72,11 @@ public class Simulateur {
 
 		this.horloge = 0;
 		
-		this.probabiliteArriveeParSeconde = new Rationnel(tauxArriveeParHeure , 3600 );
-
-		GenerateurAleatoire.evenementSurvenu(probabiliteArriveeParSeconde);
-
-		GenerateurAleatoire.genererVoitureAleatoire();
+		
 
 		// Finalement, vous devez initialiser les files entrante et sortante
-
+		fileEntrante = new FileChainee<>();
+		fileSortante = new FileChainee<>();
 		// fileEntrante = new ...
 		// fileSortante = new ...
 
@@ -97,6 +94,7 @@ public class Simulateur {
 		this.horloge = 0;
 		// Notez que pour les besoins spécifiques de A2, horloge aurait pu être
 		// définie comme une variable locale aussi.
+		
 
 		while (horloge < etapes) {
 	
