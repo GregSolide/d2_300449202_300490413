@@ -1,3 +1,5 @@
+
+
 /**
  * @auteur Mehrdad Sabetzadeh, Université d'Ottawa
  *
@@ -71,6 +73,7 @@ public class Simulateur {
 		this.etapes = etapes;
 
 		this.horloge = 0;
+		this.probabiliteArriveeParSeconde = new Rationnel(tauxArriveeParHeure, 3600);
 		
 		
 
@@ -94,7 +97,11 @@ public class Simulateur {
 		this.horloge = 0;
 		// Notez que pour les besoins spécifiques de A2, horloge aurait pu être
 		// définie comme une variable locale aussi.
-		
+		while (horloge<24 * 3600){
+			if (GenerateurAleatoire.evenementSurvenu(this.probabiliteArriveeParSeconde)){
+				fileEntrante.
+			}
+		}
 
 		while (horloge < etapes) {
 	
