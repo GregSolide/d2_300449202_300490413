@@ -78,8 +78,8 @@ public class Simulateur {
 		
 
 		// Finalement, vous devez initialiser les files entrante et sortante
-		fileEntrante = new FileChainee<>();
-		fileSortante = new FileChainee<>();
+		fileEntrante = new FileChainee<Emplacement>();
+		fileSortante = new FileChainee<Emplacement>();
 		// fileEntrante = new ...
 		// fileSortante = new ...
 
@@ -97,15 +97,38 @@ public class Simulateur {
 		this.horloge = 0;
 		// Notez que pour les besoins spécifiques de A2, horloge aurait pu être
 		// définie comme une variable locale aussi.
-		while (horloge<24 * 3600){
-			if (GenerateurAleatoire.evenementSurvenu(this.probabiliteArriveeParSeconde)){
-				fileEntrante.
-			}
-		}
 
 		while (horloge < etapes) {
-	
-			// ÉCRIVEZ VOTRE CODE ICI !
+			while (horloge<DUREE_SIMULATION){
+					if (GenerateurAleatoire.evenementSurvenu(this.probabiliteArriveeParSeconde)){
+						Emplacement new_Car = new  Emplacement(GenerateurAleatoire.genererVoitureAleatoire(), horloge);
+						fileEntrante.enfiler(new_Car);
+					}
+		}
+		for (int i = 0 ; i<stationnement.getNombreRangees();i++){
+			for (int j =0 ; j<stationnement.getNombrePlacesParRangee();j++){
+				Emplacement c = stationnement.getEmplacementA(i, j);
+				int duree_stationement = horloge - c.getHorodatage();
+				if (duree_stationement >= DUREE_MAX_STATIONNEMENT){
+					stationnement.retirer(i, j);
+					fileSortante.enfiler(c);
+				}else{
+					if (GenerateurAleatoire.evenementSurvenu(pdfDepart.pdf(horloge))){
+						stationnement.retirer(i, j);
+						fileSortante.enfiler(c);
+					}
+
+				}
+
+			}
+		}
+		if (!(fileEntrante.estVide())){
+			Emplacement emp=fileEntrante.defiler();
+			stationnement.tenterStationnement(emp.getVoiture(), emp.getHorodatage());
+		}
+		if (!(fileSortante.estVide())){
+			fileSortante.defiler();
+		}
 
 			horloge++;
 		}
