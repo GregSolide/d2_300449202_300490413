@@ -7,8 +7,7 @@ public class Emplacement {
 	private int horodatage;
 
 	public Voiture getVoiture() {
-		return this.voiture; // Supprimez cette instruction lorsque l’implémentation est complète.
-
+		return this.voiture; 
 	}
 
 	public void setVoiture(Voiture voiture) {
