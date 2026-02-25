@@ -72,16 +72,12 @@ public class Simulateur {
 
 		this.horloge = 0;
 		
-		// VOTRE CODE ICI ! VOUS DEVEZ SIMPLEMENT COMPLÉTER LES LIGNES CI-DESSOUS :
+		this.probabiliteArriveeParSeconde = new Rationnel(tauxArriveeParHeure , 3600 );
 
-		// Par quoi faut-il remplacer les deux points d’interrogation ?
-		// Indice : on vous donne un tauxArriveeParHeure.
-		// Tout ce que vous devez faire est de convertir ce taux horaire
-		// en un taux par seconde (probabilité).
-		
-		//this.probabiliteArriveeParSeconde = new Rationnel(?, ?);
+		GenerateurAleatoire.evenementSurvenu(probabiliteArriveeParSeconde);
 
-		
+		GenerateurAleatoire.genererVoitureAleatoire();
+
 		// Finalement, vous devez initialiser les files entrante et sortante
 
 		// fileEntrante = new ...
