@@ -66,10 +66,8 @@ public class Stationnement {
 	public void stationner(int i, int j, Voiture v, int horodatage) {
 
 	if ((i<nombreRangees && j< nombrePlacesParRangee)&&peutStationnerA(i, j, v) && occupation[i][j]==null) {
-			occupation[i][j].setVoiture(v);
-			occupation[i][j].setHorodatage(horodatage);
-		}else{
-			System.out.println("La voiture "+Utilitaire.getLibelleParTypeVoiture(v.getType())+"("+v.getNumeroPlaque()+") ne peut pas être garée à "+"("+i+","+j+")"+"");
+			Emplacement new_emp = new Emplacement(v, horodatage);
+			occupation[i][j] = new_emp;
 		}
 
 	}

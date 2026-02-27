@@ -4,10 +4,9 @@
 public class Voiture {
 
 	/**
-	 * Variable d’instance pour stocker le type de la voiture
-	 */
+	 * Variable d’instance pour stocker le type de la voiture 
+	*/
 	private TypeVoiture type;
-
 	/**
 	 * Variable d’instance pour stocker le numéro de plaque de la voiture
 	 */
@@ -18,8 +17,8 @@ public class Voiture {
 	 */
 	public TypeVoiture getType() {
 		// ÉCRIVEZ VOTRE CODE ICI !
-
-		return null; // SUPPRIMEZ CETTE INSTRUCTION APRÈS AVOIR IMPLÉMENTÉ CETTE MÉTHODE
+		
+		return this.type; // SUPPRIMEZ CETTE INSTRUCTION APRÈS AVOIR IMPLÉMENTÉ CETTE MÉTHODE
 	}
 
 	/**
@@ -29,6 +28,7 @@ public class Voiture {
 	 */
 	public void setType(TypeVoiture type) {
 		// ÉCRIVEZ VOTRE CODE ICI !
+		this.type = type;
 	}
 
 	/**
@@ -36,7 +36,7 @@ public class Voiture {
 	 */
 	public String getNumeroPlaque() {
 		// ÉCRIVEZ VOTRE CODE ICI !
-		return null; // SUPPRIMEZ CETTE INSTRUCTION APRÈS AVOIR IMPLÉMENTÉ CETTE MÉTHODE
+		return this.numeroPlaque; // SUPPRIMEZ CETTE INSTRUCTION APRÈS AVOIR IMPLÉMENTÉ CETTE MÉTHODE
 	}
 
 	/**
@@ -46,6 +46,7 @@ public class Voiture {
 	 */
 	public void setNumeroPlaque(String numeroPlaque) {
 		// ÉCRIVEZ VOTRE CODE ICI !
+		this.numeroPlaque = numeroPlaque;
 	}
 
 	/**
@@ -56,6 +57,8 @@ public class Voiture {
 	 */
 	public Voiture(TypeVoiture type, String numeroPlaque) {
 		// ÉCRIVEZ VOTRE CODE ICI !
+		this.type = type;
+		this.numeroPlaque = numeroPlaque;
 	}
 
 	/**
