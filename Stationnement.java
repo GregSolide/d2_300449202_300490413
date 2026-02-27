@@ -167,7 +167,7 @@ public class Stationnement {
 
 		for (int i =0 ; i<nombreRangees;i++) {
 			for (int j =0 ; j<nombrePlacesParRangee;j++) {
-				if (peutStationnerA(i, j, v)== true){
+				if (peutStationnerA(i, j, v)== true &&  occupation[i][j] == null ){
 					stationner(i, j, v, horodatage);
 					return true;
 				}

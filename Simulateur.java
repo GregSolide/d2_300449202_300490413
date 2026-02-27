@@ -119,8 +119,7 @@ public class Simulateur {
 						int dureeStationnement = horloge - c.getHorodatage();
 
 						// Ne pas partir si vient d'arriver à cette seconde
-						if (dureeStationnement <= 0) continue;
-
+						
 						if (dureeStationnement >= DUREE_MAX_STATIONNEMENT) {
 							// Durée max atteinte : départ forcé
 							stationnement.retirer(i, j);
