@@ -16,13 +16,12 @@ public class InfoEtudiant {
     public static void afficher() {
 
         System.out.println("************************************************************");
-        System.out.println("*                                                          *");
-        System.out.println("*                                                          *");
-        System.out.println("*                                                          *");
-        System.out.println("*                                                          *");
+        System.out.println("*                Adrien Gregoire Solide : 300449202        *");
+        System.out.println("*                        Section: A00                      *");
+        System.out.println("*                   Marcel Danleu : 300490413              *");
+        System.out.println("*                        Section: A00                      *");
         System.out.println("************************************************************");
         System.out.println();
-
     }
 
 }

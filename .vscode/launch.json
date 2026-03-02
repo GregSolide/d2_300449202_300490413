@@ -6,7 +6,7 @@
             "name": "Run Simulateur",
             "request": "launch",
             "mainClass": "Simulateur",
-            "args": ["parking.inf", "11"]
+            "args": ["parking2.inf", "11"]
         }
     ]
 }
