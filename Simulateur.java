@@ -96,10 +96,7 @@ public class Simulateur {
 
 			if (enAttenteDeStationnement != null) {
 				if (stationnement.tenterStationnement(enAttenteDeStationnement.getVoiture(),enAttenteDeStationnement.getHorodatage())) {
-					System.out.println(enAttenteDeStationnement.getVoiture()
-						+ " est ENTRÉE à l'instant " + horloge
-						+ "; l'occupation est maintenant de "
-						+ stationnement.getOccupationTotale());
+					System.out.println(enAttenteDeStationnement.getVoiture()+ " est ENTRÉE à l'instant " + horloge+ "; l'occupation est maintenant de "+ stationnement.getOccupationTotale());
 					enAttenteDeStationnement = null;
 				}
 		
@@ -129,10 +126,7 @@ public class Simulateur {
 
 			if (!fileSortante.estVide()) {
 				Emplacement emp = fileSortante.defiler();
-				System.out.println(emp.getVoiture()
-					+ " est SORTIE à l'instant " + horloge
-					+ "; l'occupation est maintenant de "
-					+ stationnement.getOccupationTotale());
+				System.out.println(emp.getVoiture()+ " est SORTIE à l'instant " + horloge+ "; l'occupation est maintenant de "+ stationnement.getOccupationTotale());
 			}
 
 			horloge++;
